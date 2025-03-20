@@ -1,4 +1,4 @@
-// Exchange rates (relative to 1 USD, approximate values)
+// Exchange rates (relative to 1 USD, approximate values
 const rates = {
     USD: 1,       // Base currency
     INR: 83,      // 1 USD = 83 INR
