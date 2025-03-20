@@ -1,24 +1,29 @@
-async function convertCurrency() {
-    const amount = document.getElementById("amount").value;
+function convert() {
+    // Get input values
+    const amount = parseFloat(document.getElementById("amount").value);
     const fromCurrency = document.getElementById("fromCurrency").value;
     const toCurrency = document.getElementById("toCurrency").value;
-    const resultElement = document.getElementById("result");
+    const result = document.getElementById("result");
 
-    if (amount === "" || amount <= 0) {
-        resultElement.innerText = "Please enter a valid amount";
+    // Exchange rates (relative to 1 USD, approximate values)
+    const rates = {
+        USD: 1,       // Base currency
+        INR: 83,      // 1 USD = 83 INR
+        EUR: 0.92,    // 1 USD = 0.92 EUR
+        GBP: 0.78,    // 1 USD = 0.78 GBP
+        JPY: 150      // 1 USD = 150 JPY
+    };
+
+    // Validation
+    if (isNaN(amount) || amount <= 0) {
+        result.textContent = "Please enter a valid amount!";
         return;
     }
 
-    const apiKey = "YOUR_API_KEY"; // Replace with actual API key
-    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`;
-    
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const rate = data.conversion_rates[toCurrency];
-        const convertedAmount = (amount * rate).toFixed(2);
-        resultElement.innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-    } catch (error) {
-        resultElement.innerText = "Error fetching exchange rates";
-    }
+    // Conversion logic
+    let amountInUSD = amount / rates[fromCurrency]; // Convert to USD first
+    let convertedAmount = amountInUSD * rates[toCurrency]; // Then to target currency
+
+    // Display result
+    result.textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
 }
