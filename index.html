@@ -9,9 +9,9 @@
 <body>
     <div class="container">
         <h2>Currency Converter</h2>
-        <div class="converter-box">
-            <div class="input-row">
-                <input type="number" id="amount" placeholder="Amount" class="input-field">
+        <div class="converter">
+            <input type="number" id="amount" placeholder="Enter Amount" class="input-field">
+            <div class="currency-box">
                 <select id="fromCurrency" class="currency-select">
                     <option value="USD">USD</option>
                     <option value="INR">INR</option>
@@ -19,12 +19,7 @@
                     <option value="GBP">GBP</option>
                     <option value="JPY">JPY</option>
                 </select>
-            </div>
-            <div class="controls">
-                <button onclick="swapCurrencies()" class="swap-btn">↔</button>
-                <div class="arrow">↓</div>
-            </div>
-            <div class="input-row">
+                <button onclick="swapCurrencies()" class="swap-btn">⇆</button>
                 <select id="toCurrency" class="currency-select">
                     <option value="USD">USD</option>
                     <option value="INR">INR</option>
@@ -34,7 +29,7 @@
                 </select>
             </div>
             <button onclick="convert()" class="convert-btn">Convert</button>
-            <div id="result" class="result-box"></div>
+            <div id="result" class="result"></div>
         </div>
     </div>
     <script src="script.js"></script>
